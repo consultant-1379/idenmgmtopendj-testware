@@ -1,0 +1,6 @@
+tests,host,file,expectedExit,changeDir,fileLocation,timeout,exitShell
+Uploading script file <decryptPwd.sh>,sc1,decryptPwd.sh,0,change.dir,/tmp,10000,exit
+Uploading ldif file <addTestEntries.ldif>,sc1,addTestEntries.ldif,0,change.dir,/tmp,10000,exit
+Uploading ldif file <assignToUser.ldif>,sc1,assignToUser.ldif,0,change.dir,/tmp,10000,exit
+Uploading idif file <modifyDescription.ldif>,sc1,modifyDescription.ldif,0,change.dir,/tmp,10000,exit
+Uploading ldif file <unassignToUser.ldif>,sc1,unassignToUser.ldif,0,change.dir,/tmp,10000,exit

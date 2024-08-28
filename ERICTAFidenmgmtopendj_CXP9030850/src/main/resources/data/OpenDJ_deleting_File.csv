@@ -1,0 +1,6 @@
+tests,host,file,changeDir,fileLocation,expectedOut,timeout,exitShell,expectedExit
+Deleting script file <decryptPwd.sh>,sc1,decryptPwd.sh,change.dir,/tmp,decryptPwd.sh,10000,exit,0
+Deleting ldif file <addTestEntries.ldif>,sc1,addTestEntries.ldif,change.dir,/tmp,addTestEntries.ldif,10000,exit,0
+Deleting ldif file <assignToUser.ldif>,sc1,assignToUser.ldif,change.dir,/tmp,assignToUser.ldif,10000,exit,0
+Deleting ldif file <modifyDescription.ldif>,sc1,modifyDescription.ldif,change.dir,/tmp,modifyDescription.ldif,10000,exit,0
+Deleting ldif file <unassignToUser.ldif>,sc1,unassignToUser.ldif,change.dir,/tmp,unassignToUser.ldif,10000,exit,0

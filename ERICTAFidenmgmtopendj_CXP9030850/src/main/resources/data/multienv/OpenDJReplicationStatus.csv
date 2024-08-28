@@ -1,0 +1,5 @@
+teamName,db,opendj,podname,command,subcommand,args,expectedOut,expectedExit,timeout,testCaseId,tests
+District 11,db1,opendj_1,opendj-0,OPENDJ_BIN_PATH/dsrepl,status,| grep -A5 "^dc" | grep GOOD | wc -l,4,0,5000,TORF-12693_Robu_1,Verify that replication is enabled on the first node
+District 11,db2,opendj_2,opendj-1,OPENDJ_BIN_PATH/dsrepl,status,| grep -A5 "^dc" | grep GOOD | wc -l,4,0,5000,TORF-12693_Robu_1,Verify that replication is enabled on the second node
+District 11,db3,opendj_1,opendj-0,OPENDJ_BIN_PATH/dsrepl,status,| grep -A5 "^dc" | grep GOOD | wc -l,4,0,5000,TORF-12693_Robu_1,Verify that replication is enabled on the first node
+District 11,db4,opendj_2,opendj-1,OPENDJ_BIN_PATH/dsrepl,status,| grep -A5 "^dc" | grep GOOD | wc -l,4,0,5000,TORF-12693_Robu_1,Verify that replication is enabled on the second node

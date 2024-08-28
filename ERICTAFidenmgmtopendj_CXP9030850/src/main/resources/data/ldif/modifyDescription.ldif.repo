@@ -1,0 +1,19 @@
+dn: uid=user.openDJTafTest,ou=People,COM_INF_LDAP_ROOT_SUFFIX
+changetype: modify
+replace: description
+description: This user is for OpenDJ replication TAF test
+
+dn: cn=role.openDJTafTest,ou=Roles,COM_INF_LDAP_ROOT_SUFFIX
+changetype: modify
+replace: description
+description: This role is for OpenDJ replication TAF test
+
+dn: cn=group.openDJTafTest,ou=Groups,COM_INF_LDAP_ROOT_SUFFIX
+changetype: modify
+replace: description
+description: This group is for OpenDJ replication TAF test
+
+dn: cn=scope.openDJTafTest,ou=Scopes,COM_INF_LDAP_ROOT_SUFFIX
+changetype: modify
+replace: description
+description: This scope is for OpenDJ replication TAF test

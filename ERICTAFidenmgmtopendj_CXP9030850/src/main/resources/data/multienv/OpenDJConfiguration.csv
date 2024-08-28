@@ -1,0 +1,5 @@
+teamName,db,opendj,podname,command,args,expectedOut,expectedExit,timeout,testCaseId,tests
+District 11,db1,opendj_1,opendj-0,OPENDJ_BIN_PATH/ldapsearch,"-b ""COM_INF_LDAP_ROOT_SUFFIX"" cn=com_users dn","dn: cn=com_users,ou=Groups",0,5000,TORF-101613_Func_1,Verify that the <com_users> group exists
+District 11,db2,opendj_1,opendj-0,OPENDJ_BIN_PATH/ldapsearch,"-b ""COM_INF_LDAP_ROOT_SUFFIX"" cn=com_users dn","dn: cn=com_users,ou=Groups",0,5000,TORF-101613_Func_1,Verify that the <com_users> group exists
+District 11,db3,opendj_2,opendj-1,OPENDJ_BIN_PATH/ldapsearch,"-b ""COM_INF_LDAP_ROOT_SUFFIX"" cn=com_users dn","dn: cn=com_users,ou=Groups",0,5000,TORF-101613_Func_1,Verify that the <com_users> group exists
+District 11,db4,opendj_2,opendj-1,OPENDJ_BIN_PATH/ldapsearch,"-b ""COM_INF_LDAP_ROOT_SUFFIX"" cn=com_users dn","dn: cn=com_users,ou=Groups",0,5000,TORF-101613_Func_1,Verify that the <com_users> group exists

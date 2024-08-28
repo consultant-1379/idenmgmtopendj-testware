@@ -1,0 +1,34 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="OpenDJ">
+<!-- 
+    <test name="OpenDJ Security Test_ENMeshed">
+        <classes>
+            <class
+                name="com.ericsson.nms.security.taf.test.cases.OpenDj_SecurityTest" />
+        </classes>
+    </test>
+    <test name="OpenDJ Functional Test" preserve-order="true">
+        <classes>
+            <class
+                name="com.ericsson.nms.security.taf.test.cases.OpenDj_FunctionalTest">
+                <methods>
+                    <include name="uploadLdifFiles" />
+                    <include name="initializeTestingVariables" />
+                    <include name="verifyOpendjSSLConfiguration" />
+                    <include name="verifySMRSPosixGroup" />
+                    <include name="verifyPasswordPolicyProperties" />
+                    <include name="verifyUserPasswordPolicy" />
+                    <include name="verifyOpenDJFunctionality" />
+                    <include name="deleteLdifFiles" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Opendj Robustness Test">
+        <classes>
+            <class
+                name="com.ericsson.nms.security.taf.test.cases.OpenDj_RobustnessTest" />
+        </classes>
+    </test>
+     -->
+</suite>

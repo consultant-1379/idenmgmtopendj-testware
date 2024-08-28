@@ -1,0 +1,3 @@
+tests,host,command,subcommand,args,expectedOut,expectedExit,timeout,exitShell
+Verify that replication is enabled on the first node,sc1,dsrepl,status,|grep -A5 "^dc" |grep GOOD |wc -l,true,0,5000,exit
+Verify that replication is enabled on the second node,sc2,dsrepl,status,|grep -A5 "^dc" |grep GOOD |wc -l,true,0,5000,exit

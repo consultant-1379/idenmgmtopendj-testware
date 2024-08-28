@@ -1,0 +1,3 @@
+tests,host,command,args,exitShell,expectedOut,expectedExit,timeout
+verify opendj user for host SC1,sc1,ps,"-ef |grep java | grep opendj | awk '{print $1}'",exit,opendj,0,5000
+verify opendj user for host SC2,sc2,ps,"-ef |grep java | grep opendj | awk '{print $1}'",exit,opendj,0,5000

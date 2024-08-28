@@ -1,0 +1,3 @@
+tests,host,command,args,examiningString,expectedExit,timeout,exitShell
+Verify that the <com_users> group exists,sc1,ldapsearch,"-b COM_INF_LDAP_ROOT_SUFFIX cn=com_users dn","dn: cn=com_users,ou=Groups",0,5000,exit
+

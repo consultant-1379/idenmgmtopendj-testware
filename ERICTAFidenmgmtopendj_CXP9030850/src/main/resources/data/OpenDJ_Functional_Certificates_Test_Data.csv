@@ -1,0 +1,9 @@
+test,host,command,connectToLdap,args,expectedOut,expectedExit,timeout,exitShell
+Verify Opendj ldap-local interface is reachable on first node,sc1,ping,no,-c 1 ldap-local|grep bytes |wc -l,2,0,5000,exit
+Verify Opendj ldap-remote interface is reachable on first node,sc1,ping,no,-c 1 ldap-remote|grep bytes |wc -l,2,0,5000,exit
+Verify Opendj ldap-local interface is reachable on second node,sc2,ping,no,-c 1 ldap-local|grep bytes |wc -l,2,0,5000,exit
+Verify Opendj ldap-remote interface is reachable on second node,sc2,ping,no,-c 1 ldap-remote|grep bytes |wc -l,2,0,5000,exit
+Verify that Opendj self signed certificate is created on first node,sc1,keytool,no,-list -keystore /opt/opendj/config/keystore -storepass `cat /opt/opendj/config/keystore.pin` -alias ssl-key-pair,"Certificate fingerprint",0,5000,exit
+Verify that Opendj self signed certificate is created on second node,sc2,keytool,no,-list -keystore /opt/opendj/config/keystore -storepass `cat /opt/opendj/config/keystore.pin` -alias ssl-key-pair,"Certificate fingerprint",0,5000,exit
+Connect to Opendj on first node over SSL using self signed certificate,sc1,ldapsearch,yes,-b """COM_INF_LDAP_ROOT_SUFFIX""" -s base objectClass=* |grep  dn,dn: "COM_INF_LDAP_ROOT_SUFFIX",0,5000,exit
+Connect to Opendj on second node over SSL using self signed certificate,sc2,ldapsearch,yes,-b """COM_INF_LDAP_ROOT_SUFFIX""" -s base objectClass=* |grep  dn,dn: "COM_INF_LDAP_ROOT_SUFFIX",0,5000,exit

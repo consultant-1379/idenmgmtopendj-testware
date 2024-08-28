@@ -1,0 +1,134 @@
+BEFORE CLASS
+UtilityTestSteps.java - Tested manually
+@TestStep(id = GET_LDAP_ADMIN_PASSWORD)
+
+PENM
+from GW: sudo chown -R lipd-admin /ericsson/tor/data/idenmgmt/opendj_passkey
+from dbx: echo U2FsdGVkX1+E2DsLX5fi2TFvsqkhS4dF/1qSbZicwKU= | openssl enc -a -d -aes-128-cbc -salt -kfile '/ericsson/tor/data/idenmgmt/opendj_passkey'
+return     ldapadmin
+from GW: sudo chown -R root /ericsson/tor/data/idenmgmt/opendj_passkey
+
+VENM
+from GW: sudo chown -R cloud-user /ericsson/tor/data/idenmgmt/opendj_passkey
+from emp: echo U2FsdGVkX1+KJ3KtE2zpudi9Vqko/a4vRDzruu3lk0E= | openssl enc -a -d -aes-128-cbc -salt -kfile '/ericsson/tor/data/idenmgmt/opendj_passkey'
+return  Idapadmin
+from GW: sudo chown -R root:jboss /ericsson/tor/data/idenmgmt/opendj_passkey
+
+CENM DA director
+kubectl exec -n enm51 opendj-1 -it -- bash -c "echo U2FsdGVkX1+KJ3KtE2zpudi9Vqko/a4vRDzruu3lk0E= | openssl enc -a -d -md md5 -aes-128-cbc -salt -kfile '/ericsson/tor/data/idenmgmt/opendj_passkey'"
+return
+Defaulted container "opendj" out of: opendj, opendj-init (init)
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+Idapadmin
+
+
+TESTS
+FunctionalTestSteps.java
+@TestStep(id = VERIFY_OPENDJSSLCONFIG)
+1)
+
+  PENM
+  from db-x: ping -c 1 ldap-local|grep bytes | wc -l
+  return  2
+
+  VENM
+  from opendj-x: ping -c 1 ldap-local|grep bytes | wc -l
+  return  2
+
+  CENM
+  from diretor: ping -c 1 ldap-local|grep bytes | wc -l
+  return  2
+
+2)
+  PENM
+  from db-x: command su (passwwd ect ect)
+  from db-x: keytool -list -keystore /opt/opendj/config/keystore -storepass `cat /opt/opendj/config/keystore.pin` -alias server-cert
+  return
+  server-cert, Nov 23, 2021, PrivateKeyEntry,
+  Certificate fingerprint (SHA-256): A3:0F:56:1C:9E:4F:C2:1D:A4:EA:CE:6F:4F:C9:88:39:0B:CB:F4:B0:2D:D9:15:ED:81:59:46:5D:8C:82:F0:97
+
+  Warning:
+  The certificate uses the SHA1withRSA signature algorithm which is considered a security risk. This algorithm will be disabled in a future update.
+  from db-x: command exit
+
+  VENM
+  from opendj-x: sudo keytool -list -keystore /ericsson/opendj/opendj/config/keystore -storepass `sudo cat /ericsson/opendj/opendj/config/keystore
+  .pin` -alias server-cert
+  return
+  server-cert, Nov 30, 2021, PrivateKeyEntry,
+  Certificate fingerprint (SHA-256): 05:EC:9F:5A:35:6B:C3:F6:24:CC:16:CD:85:D2:A5:F3:5F:4E:5A:9A:52:26:9D:CF:89:B5:03:E3:8F:8D:7F:18
+
+  Warning:
+  The certificate uses the SHA1withRSA signature algorithm which is considered a security risk. This algorithm will be disabled in a future update.
+
+
+  CENM
+  from GW: kubectl exec opendj-1 -c opendj -n enm61 -it -- bash -c "keytool -list -keystore /ericsson/opendj/opendj/config/keystore -storepass \`cat /ericsson/opendj/opendj/config/keystore.pin\` -alias server-cert"
+  return
+  Defaulted container "opendj" out of: opendj, opendj-init (init)
+  server-cert, Jan 11, 2022, PrivateKeyEntry,
+  Certificate fingerprint (SHA-256): 14:F4:DB:0C:D4:60:26:68:A3:14:5F:2A:EE:09:BB:7E:8F:96:A2:F2:E4:AF:1F:4D:A1:5F:A0:34:B4:10:8B:78
+
+3)
+  PENM
+  from db-x: /opt/opendj/bin/ldapsearch -p 1636 --useSSL --trustAll -D "cn=Directory Manager" -w ldapadmin -b "dc=ieatlms5223,dc=com" -s base objectClass=* | grep  dn
+  return
+  dn: dc=ieatlms5223,dc=com
+
+  VENM
+  from opendj-x: /ericsson/opendj/opendj/bin/ldapsearch -p 1636 --useSSL --trustAll -D "cn=Directory Manager" -w Idapadmin -b "dc=ieatenmc4a14-7,dc=com" -s base objectClass=* | grep  dn
+  return
+  dn: dc=ieatenmc4a14-7,dc=com
+
+TESTS
+FunctionalTestSteps.java
+@TestStep(id = VERIFY_PASSWORDPOLICYPROPERTIES)
+1)
+PENM
+  from db-x: /opt/opendj/bin/dsconfig get-password-policy-prop -p 4444 -D "cn=Directory Manager" -w ldapadmin  --policy-name "Super User Password Policy" --advanced -X -n | grep "default-password-storage-scheme"
+  return
+  default-password-storage-scheme : Salted SHA-256
+VENM
+  from opendj-x: /ericsson/opendj/opendj/bin/dsconfig get-password-policy-prop -p 4444 -D "cn=Directory Manager" -w ldapadmin  --policy-name "Super
+  User Password Policy" --advanced -X -n | grep "default-password-storage-scheme"
+  return
+  default-password-storage-scheme : Salted SHA-256
+CENM
+  from GW: kubectl exec opendj-1 -c opendj -n enm51 -it -- bash -c "/ericsson/opendj/opendj/bin/dsconfig get-password-policy-prop -p 4444 -D \"cn=Directory Manager\" -w Idapadmin  --policy-name \"Super User Password Policy\" --advanced -X -n | grep \"default-password-storage-scheme\""
+  return
+  default-password-storage-scheme : Salted SHA-256
+
+2)
+PENM
+  from db-x: /opt/opendj/bin/dsconfig get-password-policy-prop -p 4444 -D "cn=Directory Manager" -w ldapadmin  --policy-name "Super User Password Policy" --advanced -X -n | grep max-password-age
+  return
+  max-password-age : 0 s
+VENM
+  from opendj-x: /ericsson/opendj/opendj/bin/dsconfig get-password-policy-prop -p 4444 -D "cn=Directory Manager" -w ldapadmin  --policy-name "Super User Password Policy" --advanced -X -n | grep max-password-age
+  return
+  max-password-age : 0 s
+
+TESTS
+FunctionalTestSteps.java
+@TestStep(id = VERIFY_OPENDJCONFIGURATION)
+1)
+PENM
+  from db-x: /opt/opendj/bin/ldapsearch  -p 1636 --useSSL --trustAll -D "cn=Directory Manager" -w ldapadmin -b "dc=ieatlms5223,dc=com" cn=com_users dn
+
+TESTS
+FunctionalTestSteps.java
+@TestStep(id = VERIFY_REPLICATIONSTATUS)
+1)
+PENM
+  from db-x: /opt/opendj/bin/dsreplication status  -h opendjhost0 -p 4444 -I repadmin -w ldapadmin -X -n  |grep opendjhost0 |awk '{print $7}'
+  return
+  true
+VENM
+  from opendj-x: /ericsson/opendj/opendj/bin/dsreplication status  -h opendj-0 -p 4444 -I repadmin -w ldapadmin -X -n  |grep opendj-0 |awk '{print $7}'
+  return
+  true
+CENM
+  kubectl exec opendj-0 -c opendj -n enm51 -it -- bash -c "/ericsson/opendj/opendj/bin/dsreplication status  -h opendj-0 -p 4444 -I repadmin -w Idapadmin -X -n  | grep opendj-0 | awk '{print \$7}'"
+  kubectl exec opendj-1 -c opendj -n enm51 -it -- bash -c "/ericsson/opendj/opendj/bind/sreplication status  -h opendj-1 -p 4444 -I repadmin -w Idapadmin -X -n  | grep opendj-1 | awk '{print \$7}'"
+

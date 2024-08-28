@@ -1,0 +1,27 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="OpenDJ - District11">
+    <listeners>
+        <listener class-name="com.ericsson.nms.security.taf.test.listener.TestReportObject"/>
+    </listeners>
+    <test name="OpenDJ Functional And OpendjRobustness Tests" preserve-order="true" time-out="360000">
+        <classes>
+            <class name="com.ericsson.nms.security.taf.test.cases.ChangeDefaultPasswordsOnDbNodes">
+                <methods>
+                    <include name="changePasswordsAndVerifyAccessToDbNodes"/>
+                </methods>
+            </class>
+            <class name="com.ericsson.nms.security.taf.test.cases.OpenDj_FunctionalTest">
+                <methods>
+                    <include name="verifyOpendjSSLConfiguration"/>
+                    <include name="verifyPasswordPolicyProperties"/>
+                    <include name="verifyOpendjConfiguration"/>
+                </methods>
+            </class>
+            <class name="com.ericsson.nms.security.taf.test.cases.OpenDj_RobustnessTest">
+                <methods>
+                    <include name="checkReplicationStatus"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

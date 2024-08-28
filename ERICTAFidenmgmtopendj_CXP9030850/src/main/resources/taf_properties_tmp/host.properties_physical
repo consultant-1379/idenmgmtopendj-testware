@@ -1,0 +1,16 @@
+host.sc1.type=SC1
+host.sc1.ip=10.32.224.17
+host.sc1.port.http=8080
+host.sc1.port.rmi=4447
+host.sc1.port.ssh=22
+host.sc1.user.root.type = ADMIN
+host.sc1.user.root.pass=litpc0b6lEr
+
+host.sc2.type=SC2
+host.sc2.ip=10.32.224.35
+host.sc2.port.http=8080
+host.sc2.port.rmi=4447
+host.sc2.port.ssh=22
+host.sc2.user.root.type = ADMIN
+host.sc2.user.root.pass=litpc0b6lEr
+

@@ -1,0 +1,2 @@
+username,firstName,lastName,email,password,enabled,roles
+OpenDJ_District11_taf_some_user,some_user,some_user,test@administor.com,TestPassw0rd,true,

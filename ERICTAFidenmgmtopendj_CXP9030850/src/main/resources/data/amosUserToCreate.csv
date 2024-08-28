@@ -1,0 +1,2 @@
+username,firstName,lastName,email,password,enabled,roles
+OpenDJ_TempAmos_District11_amosUser,amos_user,amos_user,test@amos.com,TestPassw0rd,true,Amos_Operator

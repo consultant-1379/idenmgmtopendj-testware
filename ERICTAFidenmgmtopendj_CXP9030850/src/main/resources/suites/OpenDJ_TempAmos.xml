@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="OpenDJ_TempAmos" configfailurepolicy="continue">
+    <test name="OpenDJ TempAmosCreation Test" preserve-order="true" time-out="60000">
+        <classes>
+            <class name="com.ericsson.nms.security.taf.test.scenario.TempAmosScenario" />
+        </classes>
+    </test>
+</suite>

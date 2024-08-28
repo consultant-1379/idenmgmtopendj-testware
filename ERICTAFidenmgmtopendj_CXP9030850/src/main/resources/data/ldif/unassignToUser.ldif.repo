@@ -1,0 +1,14 @@
+dn: cn=role.openDJTafTest,ou=Roles,COM_INF_LDAP_ROOT_SUFFIX
+changetype: modify
+delete: uniquemember
+uniquemember: uid=user.openDJTafTest,ou=People,COM_INF_LDAP_ROOT_SUFFIX
+
+dn: cn=group.openDJTafTest,ou=Groups,COM_INF_LDAP_ROOT_SUFFIX
+changetype: modify
+delete: uniquemember
+uniquemember: uid=user.openDJTafTest,ou=People,COM_INF_LDAP_ROOT_SUFFIX
+
+dn: cn=scope.openDJTafTest,ou=Scopes,COM_INF_LDAP_ROOT_SUFFIX
+changetype: modify
+delete: uniquemember
+uniquemember: uid=user.openDJTafTest,ou=People,COM_INF_LDAP_ROOT_SUFFIX

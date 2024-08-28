@@ -1,0 +1,66 @@
+dn: uid=user.openDJTafTest,ou=People,COM_INF_LDAP_ROOT_SUFFIX
+uid: user.openDJTafTest
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: userTypeOC
+objectClass: top
+cn: TAF Test
+sn: OpenDJ
+userType: enmUser
+userPassword: oldPassword
+
+dn: uid=cppUser,ou=People,COM_INF_LDAP_ROOT_SUFFIX
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: userTypeOC
+objectClass: top
+uid: cppUser
+cn: cppUser
+sn: cppUser
+userType: cppUser
+userPassword: oldPassword
+
+dn: uid=laadUser,ou=People,COM_INF_LDAP_ROOT_SUFFIX
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: userTypeOC
+objectClass: top
+cn: laadUser
+sn: laadUser
+uid: laadUser
+userType: laadUser
+userPassword: oldPassword
+
+dn: uid=m2mUser,ou=People,COM_INF_LDAP_ROOT_SUFFIX
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: userTypeOC
+objectClass: top
+uid: m2mUser
+cn: m2mUser
+sn: m2mUser
+userType: M2MUser
+userPassword: oldPassword
+
+dn: cn=role.openDJTafTest,ou=Roles,COM_INF_LDAP_ROOT_SUFFIX
+cn: cn=role.openDJTafTest
+objectClass: groupOfUniqueNames
+objectClass: top
+objectClass: enmRole
+description: This role is for OpenDJ TAF Test
+
+dn: cn=group.openDJTafTest,ou=Groups,COM_INF_LDAP_ROOT_SUFFIX
+cn: group.openDJTafTest
+objectClass: groupOfUniqueNames
+objectClass: top
+description: This group is for OpenDJ TAF Test only
+
+dn: cn=scope.openDJTafTest,ou=Scopes,COM_INF_LDAP_ROOT_SUFFIX
+cn: scope.openDJTafTest
+objectClass: groupOfUniqueNames
+objectClass: top
+description: This scope is for OpenDJ TAF Test only
